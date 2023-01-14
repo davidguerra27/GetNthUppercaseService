@@ -17,9 +17,13 @@ The Service also prints a count of each type of character returned. For example:
  Given "ItCLINiCAL" and N = 1, the return value will be "ICLINCAL", and the following output will be printed in the console:
  
  I = 2
+ 
  C = 2
+ 
  L = 2
+ 
  N = 1
+ 
  A = 1
  
  ## Author
