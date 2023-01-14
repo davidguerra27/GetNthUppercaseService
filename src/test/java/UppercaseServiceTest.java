@@ -11,13 +11,14 @@ public class UppercaseServiceTest {
     @Test
     public void testGetNthUppercaseCharacters() {
 
-
-        //INSTANTIATE THE NEEDED COMPONENTS
+        //INSTANTIATE THE NEEDED COMPONENTS FOR THE TESTS
+        //BYTE ARRAY TO COLLECT THE SYSTEM OUT
+        //PRINT STREAM TO WRITE THE DATA INTO THE ARRAY
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(byteArrayOutputStream);
         UppercaseService service = new UppercaseService(1);
-        //REDIRECT STANDARD OUTPUTSTREAM INTO A OUTPUT BYTE ARRAY
-        //SET THE OUTPUT STREAM INTO MY STREAM
+
+        //REDIRECT OUTPUTSTREAM
         System.setOut(printStream);
 
         //CALL THE METHOD BEING TESTED
@@ -52,13 +53,51 @@ public class UppercaseServiceTest {
         assertEquals("TLN", service.getNthUppercaseCharacters("ITCLiNicAl"));
 
         //REPEAT THE WHOLE PROCESS FOR A NEW BATCH OF TESTS
+        byteArrayOutputStream = new ByteArrayOutputStream();
+        printStream = new PrintStream(byteArrayOutputStream);
         service = new UppercaseService(3);
+
+        System.setOut(printStream);
+
+        service.getNthUppercaseCharacters("ITCLiNicAl");
+
+        System.setOut(System.out);
+
+        output = byteArrayOutputStream.toString();
+
+        assertEquals("C = 1 N = 1 A = 1 ", output.replaceAll("\r\n"," "));
         assertEquals("CNA", service.getNthUppercaseCharacters("ITCLiNicAl"));
 
+        //REPEAT THE WHOLE PROCESS FOR A NEW BATCH OF TESTS
+        byteArrayOutputStream = new ByteArrayOutputStream();
+        printStream = new PrintStream(byteArrayOutputStream);
         service = new UppercaseService(100);
+
+        System.setOut(printStream);
+
+        service.getNthUppercaseCharacters("ITCLiNicAl");
+
+        System.setOut(System.out);
+
+        output = byteArrayOutputStream.toString();
+
+        assertEquals("", output.replaceAll("\r\n"," "));
         assertEquals("", service.getNthUppercaseCharacters("ITCLiNicAl"));
 
+        //REPEAT THE WHOLE PROCESS FOR A NEW BATCH OF TESTS
+        byteArrayOutputStream = new ByteArrayOutputStream();
+        printStream = new PrintStream(byteArrayOutputStream);
         service = new UppercaseService(-1);
+
+        System.setOut(printStream);
+
+        service.getNthUppercaseCharacters("ITCLiNicAl");
+
+        System.setOut(System.out);
+
+        output = byteArrayOutputStream.toString();
+
+        assertEquals("", output.replaceAll("\r\n"," "));
         assertEquals("", service.getNthUppercaseCharacters("ITCLiNicAl"));
     }
 }
