@@ -18,11 +18,12 @@ public class UppercaseService {
         }
         StringBuilder result = new StringBuilder();
         IntStream.range(0, text.length())
+                .filter(i -> (i + 1) % n == 0)
                 .filter(i -> Character.isUpperCase(text.charAt(i))
                         || Character.isDigit(text.charAt(i))
                         || !Character.isLetterOrDigit(text.charAt(i)))
                 .mapToObj(text::charAt)
-                .filter(i -> (i + 1) % n == 0)
+
 
                 .forEach(c -> {
                     result.append(c);
@@ -37,4 +38,5 @@ public class UppercaseService {
 
         charCount.forEach((c, count) -> System.out.println(c + " = " + count));
     }
+
 }
